@@ -10,7 +10,7 @@ import { AxesHelper, ShaderMaterial } from 'three'
  * Base
  */
 // Debug
-// const gui = new dat.GUI()
+const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -22,13 +22,13 @@ const scene = new THREE.Scene()
  * Galaxy
  */
 const parameters = {}
-parameters.count = 48000
+parameters.count = 350000
 parameters.size = 0.005
-parameters.radius = 2.5
-parameters.branches = 2
+parameters.radius = 22.29
+parameters.branches = 12
 parameters.spin = 1
-parameters.randomness = 0.346
-parameters.randomnessPower = 50
+parameters.randomness = 0.946
+parameters.randomnessPower = 2.337
 parameters.insideColor = '#4557FF'
 parameters.outsideColor = '#0084ff'
 
@@ -126,13 +126,13 @@ const generateGalaxy = () =>
 }
 
 
-// gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'radius').min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy)
-// gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy)
-// gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy)
+gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy)
+gui.add(parameters, 'radius').min(0.01).max(150).step(0.01).onFinishChange(generateGalaxy)
+gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy)
+gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy)
+gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy)
+gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy)
+gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy)
 
 /**
  * Sizes
@@ -162,27 +162,27 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 0.2
-camera.position.y = 14
-camera.position.z = 11
+camera.position.x = -15
+camera.position.y = -9
+camera.position.z = -7
 scene.add(camera)
 
-// gui.add(camera.position, 'x').min(0).max(15).step(1).name('cameraX')
-// gui.add(camera.position, 'y').min(0).max(15).step(1).name('cameraY')
-// gui.add(camera.position, 'z').min(0).max(15).step(1).name('cameraz')
+gui.add(camera.position, 'x').min(-15).max(15).step(1).name('cameraX')
+gui.add(camera.position, 'y').min(-15).max(15).step(1).name('cameraY')
+gui.add(camera.position, 'z').min(-15).max(15).step(1).name('cameraz')
 
 // const axisHelper = new THREE.AxesHelper(3)
 // scene.add(axisHelper)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.target.set(0, -12, 11)
+controls.target.set(15, -15, 5.5)
 controls.enabled = false
 
 
-// gui.add(controls.target, 'x').min(-15).max(15).step(0.5).name('controlsX')
-// gui.add(controls.target, 'y').min(-15).max(15).step(0.5).name('controlsY')
-// gui.add(controls.target, 'z').min(-15).max(15).step(0.5).name('controlsZ')
+gui.add(controls.target, 'x').min(-15).max(15).step(0.5).name('controlsX')
+gui.add(controls.target, 'y').min(-15).max(15).step(0.5).name('controlsY')
+gui.add(controls.target, 'z').min(-15).max(15).step(0.5).name('controlsZ')
 
 /**
  * Renderer
