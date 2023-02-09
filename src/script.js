@@ -22,7 +22,7 @@ const scene = new THREE.Scene()
  * Galaxy
  */
 const parameters = {}
-parameters.count = 38000
+parameters.count = 48000
 parameters.size = 0.005
 parameters.radius = 2.5
 parameters.branches = 2
@@ -164,7 +164,7 @@ window.addEventListener('resize', () =>
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 0.2
 camera.position.y = 14
-camera.position.z = 13
+camera.position.z = 11
 scene.add(camera)
 
 // gui.add(camera.position, 'x').min(0).max(15).step(1).name('cameraX')
@@ -176,8 +176,9 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.target.set(0, -13, 13)
-controls.enableDamping = true
+controls.target.set(0, -12, 11)
+controls.enabled = false
+
 
 // gui.add(controls.target, 'x').min(-15).max(15).step(0.5).name('controlsX')
 // gui.add(controls.target, 'y').min(-15).max(15).step(0.5).name('controlsY')
@@ -190,6 +191,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
+renderer.setClearColor('#060606')
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 //  Generate galaxy
